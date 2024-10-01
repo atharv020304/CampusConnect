@@ -27,8 +27,9 @@ const userSchema = new mongoose.Schema({
     graduationYear: {
         type: Number,
     },
-    bio: String,
+
     skills: [String],
+    
     connections: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -61,4 +62,4 @@ userSchema.methods.getJWTToken = function(){
 
 
 
-export const User = mongoose.model("User",userSchema)
+export const User = mongoose.model('User',userSchema)
