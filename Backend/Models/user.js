@@ -17,7 +17,9 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minLength:[8,"minimum 8"],
+        select : false
     },
     role: {
         type: String,
@@ -29,7 +31,7 @@ const userSchema = new mongoose.Schema({
     },
 
     skills: [String],
-    
+
     connections: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -59,7 +61,6 @@ userSchema.methods.getJWTToken = function(){
         expiresIn: "8h",
     })
 }
-
 
 
 export const User = mongoose.model('User',userSchema)
