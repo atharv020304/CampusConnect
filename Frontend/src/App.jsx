@@ -6,7 +6,6 @@ function App() {
 
   const handleIncrement = () => {
     setCount(count + 1);
-    
     document.body.style.backgroundColor = 'green'; 
   };
 
@@ -15,15 +14,20 @@ function App() {
     document.body.style.backgroundColor = 'yellow'; 
   };
 
+  const handleEnd = () => {
+    window.alert('Thank You!'); 
+    window.close(); 
+  };
+
   return (
     <>
       <div className="card">
         <div>
           {count}
         </div>
-
         <button onClick={handleIncrement}>increment</button>
         <button onClick={handleDecrement}>decrement</button>
+        <button onClick={handleEnd}>End</button> 
       </div>
     </>
   );
