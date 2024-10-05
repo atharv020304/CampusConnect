@@ -1,7 +1,7 @@
-import { asyncHandler } from "../Middlewares/asyncHandler";
-import { errHandler } from "../Middlewares/errmiddleware";
-import { Chat } from "../Models/chat";
-import { Message } from "../Models/message";
+import { asyncHandler } from "../Middlewares/asyncHandler.js";
+import { errHandler } from "../Middlewares/errmiddleware.js";
+import { Chat } from "../Models/chat.js";
+import { Message } from "../Models/message.js";
 
 
 export const postMessage = asyncHandler(async(req,res,next)=>{

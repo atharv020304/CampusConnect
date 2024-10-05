@@ -1,4 +1,4 @@
-import { connect } from "mongoose";
+
 import { asyncHandler } from "../Middlewares/asyncHandler.js";
 import { errHandler } from "../Middlewares/errmiddleware.js";
 import { User } from "../Models/user.js"
@@ -114,3 +114,65 @@ export const UpdatePassword = asyncHandler(async(req,res,next)=>{
 
 });
 
+
+export const addConnection =asyncHandler(async(req,res,next)=>{
+    const { connectionId}= req.body;
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+    const connection = await User.findById(connectionId);
+
+    if(!user || !connection){
+        return next(new errHandler('400',"error in fiding user"));
+    }
+
+    if(user.connections.includes(connectionId)){
+        return next(new errHandler('400',"user is already connected"))
+    }
+
+    user.connections.push(connectionId);
+
+    await user.save();
+
+    res.status(200).json({
+        success:true,
+        message:"connection added successfully"
+    })
+}) 
+
+
+export const removeConnection = asyncHandler(async(req,res,next)=>{
+    const {connectionId} = req.body;
+    const userId = req.user.id;
+
+    const user = await User.findById(userId)
+    const connectionUser = await User.findById(connectionId)
+    if(!user || !connectionUser){
+        return next(new errHandler('400',"error in fiding user"));
+    }
+
+    if(!user.connections.includes(connectionId)){
+        return next(new errHandler('400',"user is not connected"))
+    }
+
+    user.connections = user.connections.filter(id => id.toString() !== connectionId);
+    await user.save();
+    
+    res.status(200).json({
+        success:true,
+        message:"connection removed successfully"
+    })
+})
+
+export const getAllconnections = asyncHandler(async(req,res,next)=>{
+    const userId = req.user.id;
+    const user = await User.findById(userId).populate('connections','name email role');
+
+    if(!user){
+        return next(new errHandler('400',"user not found"));
+    }
+
+    res.status(200).json({
+        success:true,
+        connections :user.connections
+    });
+})
