@@ -29,7 +29,7 @@ export const errMiddleware = (err,req,res,next) =>{
         const message = "Your token has expired. Please log in again";
         err = new errHandler(400,message);
     }
-
+    
     //err return kartoy apn
     return res.status(err.statusCode).json({
         success: false,

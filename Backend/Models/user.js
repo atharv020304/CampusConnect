@@ -33,7 +33,6 @@ const userSchema = new mongoose.Schema({
     skills: [String],
 
     
-
     connections: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

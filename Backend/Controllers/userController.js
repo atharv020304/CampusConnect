@@ -6,11 +6,28 @@ import { sendToken } from "../Utils/jwtToken.js";
 
 export const UserRegister = asyncHandler(async(req,res,next)=>{
 
-    const {name,email,password,role,graduationYear,skills} =req.body;
+    const {name,email,password,role,graduationYear,skills} = req.body;
+    
+    // if(!name || !email || !password || !role || !graduationYear){
+    //     return next(new errHandler(400,"this field is required"))
+    // }
 
-    if(!name || !email || !password || !role || !graduationYear || !skills){
-        return next(new errHandler(400,"this field is required"))
+    if(!name){
+        return next(new errHandler(400,"Name is required"))
     }
+    if(!email){
+        return next(new errHandler(400,"Email is required"))
+    }
+    if(!password){
+        return next(new errHandler(400,"Password is required"))
+    }
+    if(!role){
+        return next(new errHandler(400,"Role is required"))
+    }
+    if(!graduationYear){
+        return next(new errHandler(400,"Graduation Year is required"))
+    }
+    
 
     const userExists = await User.findOne({email});
 
@@ -176,3 +193,11 @@ export const getAllconnections = asyncHandler(async(req,res,next)=>{
         connections :user.connections
     });
 })
+
+
+
+
+
+
+
+
