@@ -1,16 +1,91 @@
-import { Link } from "react-router-dom";
-import "./_components.css";
 
-const NavBar = () => {
+
+// import { Link } from "react-router-dom";
+// import "./Navbar.css"; // Assuming you have some CSS for styling
+
+// const Navbar = () => {
+//   return (
+//     <nav className="navbar">
+//       <h1>CampusConnect</h1>
+//       <ul>
+       
+//         <li>
+//           <Link to="/login">Login</Link>
+//         </li>
+//         <li>
+//           <Link to="/register">Register</Link>
+//         </li>
+      
+//       </ul>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;
+
+
+
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
+import "./Navbar.css"; // Make sure you have your CSS file for styling
+
+const Navbar = () => {
+  const [show, setShow] = useState(false);
+  const { isAuth } = useSelector((state) => state.user); // Accessing the auth state from Redux store
+
   return (
-    <div className="navbar">
-      <div className="container">
-        <Link to="/">
-          <h1 className="navbar-title">Campus Connect</h1>
-        </Link>
-      </div>
-    </div>
+    <>
+      <nav className={show ? "navbar show_navbar" : "navbar"}>
+        <div className="logo">
+          <img src="/image.png" alt="logo" />
+        </div>
+        <div className="links">
+          <ul>
+            <li>
+              <Link to={"/"} onClick={() => setShow(false)}>
+                HOME
+              </Link>
+            </li>
+            {isAuth ? (
+              <>
+                <li>
+                  <Link to={"/posts"} onClick={() => setShow(false)}>
+                    POSTS
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/questions"} onClick={() => setShow(false)}>
+                    QUESTIONS
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/logout"} onClick={() => setShow(false)}>
+                    LOGOUT
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to={"/register"} onClick={() => setShow(false)}>
+                    REGISTER
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/login"} onClick={() => setShow(false)}>
+                    LOGIN
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+        <GiHamburgerMenu className="hamburger" onClick={() => setShow(!show)} />
+      </nav>
+    </>
   );
 };
 
-export default NavBar;
+export default Navbar;

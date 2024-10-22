@@ -1,0 +1,74 @@
+/* Basic styling for the login container */
+.login-container {
+    width: 100%;                       /* Full width for responsiveness */
+    max-width: 400px;                 /* Maximum width for the container */
+    margin: 0 auto;                   /* Center horizontally */
+    padding: 20px;                    /* Padding around the content */
+    background-color: #f9f9f9;        /* Light background color */
+    border-radius: 8px;               /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    display: flex;                    /* Use flexbox for centering */
+    flex-direction: column;           /* Stack children vertically */
+    justify-content: center;          /* Center items vertically */
+    align-items: center;              /* Center items horizontally */
+    min-height: 100vh;                /* Ensure it fills the viewport height */
+}
+
+/* Style each form group (label + input) */
+.form-group {
+    margin-bottom: 20px;              /* Space below each form group */
+}
+
+.form-group label {
+    display: block;                   /* Block display for label */
+    font-size: 14px;                 /* Font size for label */
+    margin-bottom: 5px;              /* Space below label */
+    color: #333;                     /* Dark text color */
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;                      /* Full width for inputs */
+    padding: 10px;                   /* Inner padding */
+    border: 1px solid #ddd;          /* Light border */
+    border-radius: 4px;              /* Rounded corners */
+    font-size: 16px;                 /* Font size for inputs */
+    transition: border-color 0.3s ease; /* Transition for border color */
+}
+
+/* Add focus style to inputs */
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #007bff;           /* Change border color on focus */
+    outline: none;                   /* Remove outline */
+}
+
+/* Style the submit button */
+.btn {
+    width: 100%;                      /* Full width for button */
+    padding: 12px;                   /* Inner padding */
+    background-color: #007bff;       /* Blue background */
+    color: white;                     /* White text */
+    border: none;                     /* No border */
+    border-radius: 4px;              /* Rounded corners */
+    font-size: 16px;                  /* Font size */
+    cursor: pointer;                  /* Pointer cursor */
+    transition: background-color 0.3s ease; /* Transition for background color */
+}
+
+.btn:hover {
+    background-color: #0056b3;       /* Darker blue on hover */
+}
+
+/* Add a little spacing to the ToastContainer (for notifications) */
+.Toastify__toast-container {
+    top: 20px;                       /* Space from the top */
+}
+
+.Toastify__toast--success {
+    background-color: #28a745;       /* Green for success messages */
+}
+
+.Toastify__toast--error {
+    background-color: #dc3545;       /* Red for error messages */
+}

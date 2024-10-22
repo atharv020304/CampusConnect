@@ -3,9 +3,10 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Inter;
-  color: white;
+  color: black;
+
 }
 
 body {
-  background-color: #1a1a1a;
+  background-color:rgb(238, 238, 238);
 }

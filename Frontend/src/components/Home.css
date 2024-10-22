@@ -1,0 +1,145 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #C7FFD8; /* Light mint background for contrast */
+}
+
+/* Hero Section */
+.hero {
+    background-color: #0B2F9F; /* Main dark blue color */
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hero h1 {
+    
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.hero h4 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.hero .box {
+    background-color: white; /* White background for the box */
+    color: #0B2F9F; /* Main dark blue text */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* How It Works Section */
+.howItWorks {
+    padding: 50px 20px;
+    background-color: #98DED9; /* Light teal for this section */
+    text-align: center;
+}
+
+.howItWorks h3 {
+    font-size: 2.5rem;
+    color: #0B2F9F; /* Main dark blue for the heading */
+    margin-bottom: 40px;
+}
+
+.howItWorks .container {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.howItWorks .card {
+    background-color: white; /* White background for cards */
+    padding: 30px;
+    border-radius: 8px;
+    width: 30%;
+    min-width: 280px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.howItWorks .icon {
+    font-size: 2.5rem;
+    color: #161D6F; /* Darker blue for icons */
+    margin-bottom: 20px;
+}
+
+.howItWorks h4 {
+    font-size: 1.5rem;
+    color: #0B2F9F; /* Main dark blue for headings */
+    margin-bottom: 15px;
+}
+
+.howItWorks p {
+    color: #666; /* Dark Grey for text */
+}
+
+/* Footer Section */
+footer {
+    background-color: #0B2F9F; /* Main dark blue for footer */
+    color: white;
+    padding: 50px 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-logo {
+    width: 150px;
+    height: auto;
+}
+
+footer h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer li {
+    margin-bottom: 10px;
+    color: white;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.social-links li {
+    display: flex;
+    align-items: center;
+}
+
+.social-links li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-links li a:hover {
+    color: #98DED9; /* Lighter teal for hover effect */
+}
+
+.copyright {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #0B2F9F; /* Main dark blue for copyright */
+    margin-top: 30px;
+    color: #ffffff; /* White text */
+}
