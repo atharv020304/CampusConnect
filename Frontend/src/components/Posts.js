@@ -1,87 +1,97 @@
-import Post from "./Post.js";
-import "./_components.css";
 
-const posts = [
-  {
-    id: 1,
-    author: "Alice",
-    content: "This is my first post! Excited to share my thoughts.",
-    image: "https://via.placeholder.com/300x150",
-    postedOn: "2024-10-15 10:30 AM",
-    comments: [
-      {
-        user: "Bob",
-        content: "Welcome to the platform!",
-        image: "https://via.placeholder.com/50",
-        postedOn: "2024-10-15 11:00 AM",
-      },
-      {
-        user: "Charlie",
-        content: "Looking forward to your future posts!",
-        image: "https://via.placeholder.com/50",
-        postedOn: "2024-10-15 11:30 AM",
-      },
-    ],
-  },
-  {
-    id: 2,
-    author: "David",
-    content: "Just finished reading a great book on React.",
-    image: "https://via.placeholder.com/300x150",
-    postedOn: "2024-10-14 2:15 PM",
-    comments: [
-      {
-        user: "Eve",
-        content: "Which book did you read?",
-        image: "https://via.placeholder.com/50",
-        postedOn: "2024-10-14 3:00 PM",
-      },
-      {
-        user: "Frank",
-        content: "React is awesome! Any recommendations?",
-        image: "https://via.placeholder.com/50",
-        postedOn: "2024-10-14 3:30 PM",
-      },
-    ],
-  },
-  {
-    id: 3,
-    author: "Grace",
-    content: "I love coding! It’s so much fun.",
-    image: "https://via.placeholder.com/300x150",
-    postedOn: "2024-10-13 1:45 PM",
-    comments: [
-      {
-        user: "Hank",
-        content: "What are you working on right now?",
-        image: "https://via.placeholder.com/50",
-        postedOn: "2024-10-13 2:00 PM",
-      },
-      {
-        user: "Ivy",
-        content: "Keep it up! You're doing great!",
-        image: "https://via.placeholder.com/50",
-        postedOn: "2024-10-13 2:30 PM",
-      },
-    ],
-  },
-];
+
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    fetchPosts,
+    createPost,
+    postComment,
+    fetchComments,
+    clearAllPostErrors,
+} from "../store/slices/postSlice.js";
 
 const Posts = () => {
-  return (
-    <div className="posts">
-      {posts.map((post) => (
-        <Post
-          key={post.id}
-          author={post.author}
-          content={post.content}
-          image={post.image}
-          postedOn={post.postedOn}
-          comments={post.comments}
-        />
-      ))}
-    </div>
-  );
+    const dispatch = useDispatch();
+    const { posts, loading, error, message, comments } = useSelector((state) => state.posts);
+    const [newPostContent, setNewPostContent] = useState('');
+    const [newPostImage, setNewPostImage] = useState(null);
+
+    useEffect(() => {
+        dispatch(fetchPosts());
+        dispatch(clearAllPostErrors()); // Clear errors on component mount
+    }, [dispatch]);
+
+    const handleCommentSubmit = (postId, comment) => {
+        if (comment.trim()) {
+            dispatch(postComment(postId, { content: comment }));
+            dispatch(fetchComments(postId)); // Fetch comments after posting a new comment
+        }
+    };
+
+    const handleCreatePost = (event) => {
+        event.preventDefault();
+
+        const postData = {
+            content: newPostContent,
+            image: newPostImage,
+        };
+
+        dispatch(createPost(postData));
+        setNewPostContent(''); // Clear content after submission
+        setNewPostImage(null); // Clear image after submission
+    };
+
+    const handleFetchComments = (postId) => {
+        dispatch(fetchComments(postId));
+    };
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>{error}</div>;
+    if (message) return <div>{message}</div>; // Show success messages
+
+    return (
+        <div>
+            <h1>Posts</h1>
+            <form onSubmit={handleCreatePost}>
+                <textarea 
+                    value={newPostContent}
+                    onChange={(e) => setNewPostContent(e.target.value)}
+                    placeholder="Post content"
+                    required 
+                />
+                <input 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={(e) => setNewPostImage(e.target.files[0])} 
+                />
+                <button type="submit">Create Post</button>
+            </form>
+            {posts.map((post) => (
+                <div key={post._id}>
+                    <h2>{post.title}</h2>
+                    <p>{post.content}</p>
+                    {post.image && <img src={post.image} alt={post.title} width={200} />}
+                    <button onClick={() => handleFetchComments(post._id)}>Load Comments</button>
+                    <h3>Comments:</h3>
+                    <ul>
+                        {comments[post._id]?.map((comment) => (
+                            <li key={comment._id}>
+                                {comment.content}
+                            </li>
+                        ))}
+                    </ul>
+                    <textarea placeholder="Add a comment" id={`comment-${post._id}`}></textarea>
+                    <button onClick={() => {
+                        const commentInput = document.getElementById(`comment-${post._id}`);
+                        handleCommentSubmit(post._id, commentInput.value);
+                        commentInput.value = ''; // Clear the textarea after submission
+                    }}>
+                        Submit Comment
+                    </button>
+                </div>
+            ))}
+        </div>
+    );
 };
 
 export default Posts;
