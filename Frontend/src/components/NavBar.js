@@ -30,6 +30,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import "./Navbar.css"; // Make sure you have your CSS file for styling
+import logo from "./logo.png";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
@@ -39,7 +40,7 @@ const Navbar = () => {
     <>
       <nav className={show ? "navbar show_navbar" : "navbar"}>
         <div className="logo">
-          <img src="/image.png" alt="logo" />
+          <img src={logo} alt="logo" />
         </div>
         <div className="links">
           <ul>

@@ -69,7 +69,7 @@ import Profile from "./components/Profile.jsx";
 import Posts from "./components/Posts.js";
 import Questions from "./components/Questions.js";
 import Create from "./components/Create.js";
-import Navbar from "./components/Navbar.js"; 
+import Navbar from "./components/NavBar.js"; 
 import "./App.css";
 
 function App() {

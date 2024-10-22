@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaUserPlus, FaList, FaHeart, FaTwitter, FaInstagram, FaYoutube, FaLinkedin } from 'react-icons/fa';
 import './Home.css';
+import logo from './logo2.png';
 
 const Home = () => {
   return (
@@ -48,39 +49,49 @@ const Home = () => {
 
       {/* Footer Section */}
       <footer>
-        <div className='footer-content'>
-          <div>
-            <img src="/image.png" alt="CampusConnect Logo" className='footer-logo' />
-          </div>
-          <div>
-            <h4>Support</h4>
-            <ul>
-              <li>Pune, Maharashtra, India</li>
-              <li>support@campusconnect.com</li>
-              <li>+91 9378451260</li>
-            </ul>
-          </div>
+  <div className="footer-left">
+    <h4>Stay Updated</h4>
+    <p>Subscribe to our newsletter to get the latest updates from CampusConnect, job opportunities, and alumni insights directly in your inbox.</p>
+    <div className="newsletter-input">
+      <input type="email" placeholder="Enter your email" />
+      <input type="submit" value="Subscribe" />
+    </div>
+  </div>
 
-          <div>
-            <h4>Links</h4>
-            <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="/jobs">Jobs</a></li>
-              <li><a href="/dashboard">Profile</a></li>
-            </ul>
-          </div>
+  <div className="footer-right footer-content">
+    <div>
+      <img src={logo} alt="CampusConnect Logo" className='footer-logo' />
+    </div>
+    <div>
+      <h4>Support</h4>
+      <ul>
+        <li>Pune, Maharashtra, India</li>
+        <li>support@campusconnect.com</li>
+        <li>+91 9378451260</li>
+      </ul>
+    </div>
 
-          <div>
-            <h4>Follow Us</h4>
-            <ul className='social-links'>
-              <li><a href="https://twitter.com"><FaTwitter /> Twitter</a></li>
-              <li><a href="https://instagram.com"><FaInstagram /> Instagram</a></li>
-              <li><a href="https://youtube.com"><FaYoutube /> YouTube</a></li>
-              <li><a href="https://linkedin.com"><FaLinkedin /> LinkedIn</a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+    <div>
+      <h4>Links</h4>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/jobs">Jobs</a></li>
+        <li><a href="/dashboard">Profile</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4>Follow Us</h4>
+      <ul className="social-links">
+        <li><a href="https://twitter.com"><FaTwitter /> Twitter</a></li>
+        <li><a href="https://instagram.com"><FaInstagram /> Instagram</a></li>
+        <li><a href="https://youtube.com"><FaYoutube /> YouTube</a></li>
+        <li><a href="https://linkedin.com"><FaLinkedin /> LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
     </>
   );
 };
