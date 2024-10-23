@@ -418,7 +418,7 @@ const Profile = () => {
                 <div className="profile-info">
                     <h2>{user.name || "N/A"}</h2>
                     <p>Email: {user.email || "N/A"}</p>
-                    <p>Username: {user.username || "N/A"}</p>
+                    <p>Username: {user.name || "N/A"}</p>
                     <p>Connections: {user.connections ? user.connections.length : 0}</p>
                 </div>
             ) : (
