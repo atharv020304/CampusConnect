@@ -1,0 +1,39 @@
+.profile-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.profile-link {
+    display: inline-block;
+    margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.profile-link:hover {
+    text-decoration: underline;
+}
+
+.connect-button, .disconnect-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.disconnect-button {
+    background-color: #dc3545;
+}
+
+.connect-button:hover, .disconnect-button:hover {
+    opacity: 0.9;
+}

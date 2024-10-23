@@ -101,3 +101,20 @@ export const deletePost = asyncHandler(async (req, res, next) => {
         message: "Post deleted successfully",
     });
 });
+
+
+export const getUserPosts = asyncHandler(async (req, res, next) => {
+    const userId = req.params.id; // Change from userId to id
+
+    const posts = await Post.find({ author: userId }).populate('author', 'name');
+
+    if (!posts || posts.length === 0) {
+        return next(errHandler(404, "No posts found for this user"));
+    }
+
+    res.status(200).json({
+        success: true,
+        message: "User's posts retrieved successfully",
+        posts: posts,
+    });
+});

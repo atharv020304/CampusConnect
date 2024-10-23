@@ -71,6 +71,11 @@ const Navbar = () => {
                   NEW POST
                   </Link>
                 </li>
+                <li>
+                  <Link to={"/profile"} onClick={() => setShow(false)}>
+                  Profile
+                  </Link>
+                </li>
               </>
             ) : (
               <>

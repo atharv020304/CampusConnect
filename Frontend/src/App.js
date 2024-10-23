@@ -72,6 +72,8 @@ import Create from "./components/Create.js";
 import Navbar from "./components/NavBar.js"; 
 import "./App.css";
 import AddPost from "./components/AddPost.js";
+import UserPosts from "./components/UserPosts.js";
+
 
 function App() {
   return (
@@ -86,6 +88,8 @@ function App() {
         <Route path="/questions" element={<Questions />} />
         <Route path="/create" element={<Create />} />
         <Route path="/addpost" element={<AddPost />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/personalposts" element={<UserPosts />} />
       </Routes>
     </Router>
   );

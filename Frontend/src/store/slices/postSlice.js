@@ -105,6 +105,7 @@ export const fetchComments = (postId) => async (dispatch) => {
     try {
         dispatch(postSlice.actions.requestForComments(postId));
         const response = await axios.get(`${BACKEND_URL}/comment/getall/${postId}`, { withCredentials: true });
+        console.log(response.data);
         dispatch(postSlice.actions.successForComments({ postId, comments: response.data.comments }));
     } catch (error) {
         dispatch(postSlice.actions.failureForComments(error.response?.data?.message || "Failed to fetch comments"));
