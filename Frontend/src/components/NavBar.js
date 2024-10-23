@@ -73,7 +73,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link to={"/profile"} onClick={() => setShow(false)}>
-                  Profile
+                  PROFILE
                   </Link>
                 </li>
               </>
