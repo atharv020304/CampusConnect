@@ -68,7 +68,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link to={"/addpost"} onClick={() => setShow(false)}>
-                  AddPost
+                  NEW POST
                   </Link>
                 </li>
               </>
