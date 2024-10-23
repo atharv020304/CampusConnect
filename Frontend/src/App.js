@@ -71,6 +71,7 @@ import Questions from "./components/Questions.js";
 import Create from "./components/Create.js";
 import Navbar from "./components/NavBar.js"; 
 import "./App.css";
+import AddPost from "./components/AddPost.js";
 
 function App() {
   return (
@@ -84,6 +85,7 @@ function App() {
         <Route path="/posts" element={<Posts />} />
         <Route path="/questions" element={<Questions />} />
         <Route path="/create" element={<Create />} />
+        <Route path="/addpost" element={<AddPost />} />
       </Routes>
     </Router>
   );

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Comment from "./Comment.js";
 import { useState } from "react";
-import "./_components.css";
+import "./Post.css";
 
 const Post = ({ author, content, image, comments, postedOn }) => {
   const [showCommments, setShowComments] = useState(false);

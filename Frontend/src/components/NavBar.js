@@ -29,7 +29,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import "./Navbar.css"; // Make sure you have your CSS file for styling
+import "./Navbar.css"; 
 import logo from "./logo.png";
 
 const Navbar = () => {
@@ -64,6 +64,11 @@ const Navbar = () => {
                 <li>
                   <Link to={"/logout"} onClick={() => setShow(false)}>
                     LOGOUT
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/addpost"} onClick={() => setShow(false)}>
+                  AddPost
                   </Link>
                 </li>
               </>
