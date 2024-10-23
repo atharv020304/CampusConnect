@@ -62,11 +62,11 @@ export const updatePost = asyncHandler(async (req, res, next) => {
     const post = await Post.findById(req.params.id);
 
     if (!post) {
-        return next(errHandler(404, "Post not found"));
+        return next(new errHandler(404, "Post not found"));
     }
 
     if (post.author.toString() !== req.user.id) {
-        return next(errHandler(401, "You are not authorized to update this post"));
+        return next(new errHandler(401, "You are not authorized to update this post"));
     }
 
     post.content = content || post.content;
@@ -86,11 +86,11 @@ export const deletePost = asyncHandler(async (req, res, next) => {
 
 
     if (!post) {
-        return next(errHandler(404, "Post not found"));
+        return next(new errHandler(404, "Post not found"));
     }
 
     if (post.author.toString() !== req.user.id) {
-        return next(errHandler(403, "Not allowed to delete the post"));
+        return next(new errHandler(403, "Not allowed to delete the post"));
     }
 
     

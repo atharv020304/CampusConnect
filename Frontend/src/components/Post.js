@@ -194,6 +194,77 @@
 
 
 
+
+//--------------------------------------------
+
+// import React, { useEffect, useState } from 'react';
+// import './Post.css'; // Optional: Add your own styles for the Post component
+// import { useSelector, useDispatch } from 'react-redux'; // Import useSelector and useDispatch
+// import { fetchComments } from '../store/slices/postSlice.js';
+
+// const Post = ({ postId, author, content, image, comments, postedOn }) => {
+//     const [commentDetails, setCommentDetails] = useState([]); // State to store fetched comment details
+//     const dispatch = useDispatch(); // Initialize dispatch to fetch comments
+
+//     // Access the users list from Redux state
+//     const users = useSelector((state) => state.user.users || []); // Assuming you have a users list in your Redux state
+
+//     useEffect(() => {
+//         // Fetch comments for the post if needed
+//         if (postId) {
+//             dispatch(fetchComments(postId));
+//         }
+//     }, [postId, dispatch]); // Run this effect when postId changes
+
+//     useEffect(() => {
+//         // Fetch comment details and associate with users
+//         const fetchCommentDetails = () => {
+//             if (comments) {
+//                 const details = comments.map(comment => {
+//                     const user = users.find(u => u._id === comment.user); // Find user by ID
+//                     return {
+//                         _id: comment._id, // Keep the comment ID
+//                         content: comment.content,
+//                         username: user ? user.name : "Unknown User" // Default to "Unknown User" if user is not found
+//                     };
+//                 });
+//                 setCommentDetails(details);
+//             }
+//         };
+
+//         fetchCommentDetails();
+//     }, [comments, users]); // This runs when comments or users change
+
+//     return (
+//         <div className="post">
+//             <h2>{author}</h2> {/* Display the author's name */}
+//             <p>{content}</p> {/* Display the post content */}
+//             {image && <img src={image} alt={content} className="post-image" />} {/* Conditionally render the image */}
+//             <p>Posted on: {new Date(postedOn).toLocaleDateString()}</p> {/* Display the date of posting */}
+
+//             <h3>Comments:</h3>
+//             {commentDetails.length > 0 ? (
+//                 <ul>
+//                     {commentDetails.map((comment) => (
+//                         <li key={comment._id}>{comment.name}: {comment.content}</li> // Display each comment with username
+//                     ))}
+//                 </ul>
+//             ) : (
+//                 <p>No comments yet.</p>
+//             )}
+//         </div>
+//     );
+// };
+
+// export default Post;
+
+
+
+
+
+
+
+
 import React, { useEffect, useState } from 'react';
 import './Post.css'; // Optional: Add your own styles for the Post component
 import { useSelector, useDispatch } from 'react-redux'; // Import useSelector and useDispatch
@@ -234,10 +305,10 @@ const Post = ({ postId, author, content, image, comments, postedOn }) => {
 
     return (
         <div className="post">
-            <h2>{author}</h2> {/* Display the author's name */}
-            <p>{content}</p> {/* Display the post content */}
-            {image && <img src={image} alt={content} className="post-image" />} {/* Conditionally render the image */}
-            <p>Posted on: {new Date(postedOn).toLocaleDateString()}</p> {/* Display the date of posting */}
+            <h2>{author}</h2> 
+            <p>{content}</p> 
+            {image && <img src={image} alt={content} className="post-image" />} 
+            <p>Posted on: {new Date(postedOn).toLocaleDateString()}</p> 
 
             <h3>Comments:</h3>
             {commentDetails.length > 0 ? (
@@ -254,3 +325,6 @@ const Post = ({ postId, author, content, image, comments, postedOn }) => {
 };
 
 export default Post;
+
+
+
