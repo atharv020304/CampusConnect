@@ -505,22 +505,22 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUser, addConnection, removeConnection, fetchConnections, fetchUserPosts } from "../store/slices/userSlice.js";
-import { fetchComments, deletePost, updatePost } from '../store/slices/postSlice.js'; // Importing deletePost and updatePost
+import { fetchComments, deletePost, updatePost } from '../store/slices/postSlice.js'; 
 import { Link } from 'react-router-dom';
-import "./Profile.css"; // CSS for styling
+import "./Profile.css"; 
 
 const Profile = () => {
     const dispatch = useDispatch();
-    const [showPosts, setShowPosts] = useState(false); // Manage visibility of posts
-    const [editingPostId, setEditingPostId] = useState(null); // Track the post being edited
-    const [editContent, setEditContent] = useState(''); // Track the new content for editing
+    const [showPosts, setShowPosts] = useState(false); 
+    const [editingPostId, setEditingPostId] = useState(null); 
+    const [editContent, setEditContent] = useState(''); 
 
-    // Extract necessary state from Redux store
+
     const { user = {}, loading, error, userPosts = [] } = useSelector((state) => state.user || {});
-    const { comments } = useSelector((state) => state.posts); // Extract comments from posts slice
-    const currentUserId = useSelector((state) => state.auth?.user?._id) || null; // Handle undefined auth state
+    const { comments } = useSelector((state) => state.posts); 
+    const currentUserId = useSelector((state) => state.auth?.user?._id) || null; 
 
-    // Fetch user and connections on mount
+    
     useEffect(() => {
         dispatch(fetchUser());
         dispatch(fetchConnections());
@@ -535,10 +535,10 @@ const Profile = () => {
     }, [userPosts]); 
     
     
-    // Determine if current user is connected to the profile user
+    
     const isConnected = user?.connections?.includes(currentUserId);
 
-    // Connect or disconnect logic
+    
     const handleConnect = () => {
         if (user && currentUserId && currentUserId !== user._id) {
             dispatch(addConnection(user._id));
@@ -551,22 +551,22 @@ const Profile = () => {
         }
     };
 
-    // Fetch posts when clicking "View My Posts"
+    
     const handleShowPosts = () => {
-        setShowPosts(true); // Show posts section
+        setShowPosts(true); 
         if (user && user._id) {
-            dispatch(fetchUserPosts(user._id)); // Fetch user's posts
+            dispatch(fetchUserPosts(user._id)); 
         }
     };
 
-    // Fetch comments for a specific post
+
     const handleFetchComments = (postId) => {
-        dispatch(fetchComments(postId)); // Fetch comments for the post
+        dispatch(fetchComments(postId)); 
     };
 
-    // Handle deleting a post
+
     const handleDeletePost = (postId) => {
-        dispatch(deletePost(postId)); // Dispatch deletePost action
+        dispatch(deletePost(postId)); 
     };
 
     // Start editing a post

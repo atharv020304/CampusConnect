@@ -1,29 +1,5 @@
 
 
-// import { Link } from "react-router-dom";
-// import "./Navbar.css"; // Assuming you have some CSS for styling
-
-// const Navbar = () => {
-//   return (
-//     <nav className="navbar">
-//       <h1>CampusConnect</h1>
-//       <ul>
-       
-//         <li>
-//           <Link to="/login">Login</Link>
-//         </li>
-//         <li>
-//           <Link to="/register">Register</Link>
-//         </li>
-      
-//       </ul>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-
-
 
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -34,7 +10,7 @@ import logo from "./logo.png";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
-  const { isAuth } = useSelector((state) => state.user); // Accessing the auth state from Redux store
+  const { isAuth, role } = useSelector((state) => state.user); 
 
   return (
     <>
@@ -66,14 +42,17 @@ const Navbar = () => {
                     LOGOUT
                   </Link>
                 </li>
-                <li>
-                  <Link to={"/addpost"} onClick={() => setShow(false)}>
-                  NEW POST
-                  </Link>
-                </li>
+              
+                {role !== "student" && (
+                  <li>
+                    <Link to={"/addpost"} onClick={() => setShow(false)}>
+                      NEW POST
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <Link to={"/profile"} onClick={() => setShow(false)}>
-                  PROFILE
+                    PROFILE
                   </Link>
                 </li>
               </>
