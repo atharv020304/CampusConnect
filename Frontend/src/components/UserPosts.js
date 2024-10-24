@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserPosts } from "../store/slices/userSlice.js"; // Adjust the path according to your project structure
+import { fetchUserPosts } from "../store/slices/userSlice.js"; 
 
 const UserPosts = ({ userId }) => {
     const dispatch = useDispatch();
-    const { loading, posts, error } = useSelector((state) => state.posts); // Adjust the selector according to your state structure
+    const { loading, posts, error } = useSelector((state) => state.posts); 
 
     useEffect(() => {
         if (userId) {

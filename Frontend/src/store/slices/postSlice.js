@@ -13,7 +13,7 @@ const postSlice = createSlice({
         error: null,
         message: null,
         singlePost: {},
-        comments: {}, // Store comments by post ID
+        comments: {}, 
     },
     reducers: {
         requestForDeletePost(state) {
@@ -46,12 +46,11 @@ const postSlice = createSlice({
         requestForComments(state, action) {
             state.loading = true;
             state.error = null;
-            // Reset comments for the post being fetched
             state.comments[action.payload] = [];
         },
         successForComments(state, action) {
             state.loading = false;
-            state.comments[action.payload.postId] = action.payload.comments; // Store comments by post ID
+            state.comments[action.payload.postId] = action.payload.comments; 
             state.error = null;
         },
         failureForComments(state, action) {
@@ -107,12 +106,11 @@ const postSlice = createSlice({
             state.posts = [];
             state.message = null;
             state.singlePost = {};
-            state.comments = {}; // Reset comments state
+            state.comments = {}; 
         },
     },
 });
 
-// Async Thunks
 
 export const updatePost = (postId, postData) => async (dispatch) => {
     try {
@@ -122,7 +120,7 @@ export const updatePost = (postId, postData) => async (dispatch) => {
             headers: { "Content-Type": "application/json" },
         });
         dispatch(postSlice.actions.successForUpdatePost(response.data.message));
-        dispatch(fetchPosts()); // Refresh posts after updating
+        dispatch(fetchPosts()); 
     } catch (error) {
         dispatch(postSlice.actions.failureForUpdatePost(error.response?.data?.message || "Failed to update post"));
     }
@@ -134,13 +132,13 @@ export const deletePost = (postId) => async (dispatch) => {
         dispatch(postSlice.actions.requestForDeletePost());
         const response = await axios.delete(`${BACKEND_URL}/postcontent/delete/${postId}`, { withCredentials: true });
         dispatch(postSlice.actions.successForDeletePost(response.data.message));
-        dispatch(fetchPosts()); // Refresh posts after deletion
+        dispatch(fetchPosts()); 
     } catch (error) {
         dispatch(postSlice.actions.failureForDeletePost(error.response?.data?.message || "Failed to delete post"));
     }
 };
 
-// Fetch all posts
+
 export const fetchPosts = () => async (dispatch) => {
     try {
         dispatch(postSlice.actions.requestForAllPosts());
@@ -152,7 +150,7 @@ export const fetchPosts = () => async (dispatch) => {
     }
 };
 
-// Fetch comments for a specific post
+
 export const fetchComments = (postId) => async (dispatch) => {
     try {
         dispatch(postSlice.actions.requestForComments(postId));
@@ -164,7 +162,7 @@ export const fetchComments = (postId) => async (dispatch) => {
     }
 };
 
-// Create a new post
+
 export const createPost = (postData) => async (dispatch) => {
     try {
         dispatch(postSlice.actions.requestForCreatePost());
@@ -188,7 +186,7 @@ export const createPost = (postData) => async (dispatch) => {
     }
 };
 
-// Post a comment
+
 export const postComment = (postId, data) => async (dispatch) => {
     try {
         dispatch(postSlice.actions.requestForPostComment());
@@ -200,12 +198,12 @@ export const postComment = (postId, data) => async (dispatch) => {
     }
 };
 
-// Clear all errors
+
 export const clearAllPostErrors = () => (dispatch) => {
     dispatch(postSlice.actions.clearAllPostErrors());
 };
 
-// Reset the post slice state
+
 export const resetPostSlice = () => (dispatch) => {
     dispatch(postSlice.actions.resetPostSlice());
 };

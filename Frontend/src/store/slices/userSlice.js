@@ -508,10 +508,10 @@ const userSlice = createSlice({
         error: null,
         message: null,
         connections: [],
-        userPosts: [], // New state for user posts
+        userPosts: [], 
     },
     reducers: {
-        // User Registration
+      
         registerRequest(state) {
             state.loading = true;
             state.isAuth = false;
@@ -532,7 +532,7 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.message = null;
         },
-        // User Login
+      
         loginRequest(state) {
             state.loading = true;
             state.isAuth = false;
@@ -553,7 +553,7 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.message = null;
         },
-        // Fetch User Profile
+      
         fetchUserRequest(state) {
             state.loading = true;
             state.error = null;
@@ -568,7 +568,7 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
-        // Add Connection
+       
         addConnectionRequest(state) {
             state.loading = true;
             state.error = null;
@@ -577,7 +577,7 @@ const userSlice = createSlice({
         addConnectionSuccess(state, action) {
             state.loading = false;
             state.message = action.payload.message;
-            // Add the new connection ID to state
+
             if (state.user.connections) {
                 state.user.connections.push(action.payload.newConnection);
             }
@@ -586,7 +586,7 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
-        // Remove Connection
+        
         removeConnectionRequest(state) {
             state.loading = true;
             state.error = null;
@@ -595,7 +595,7 @@ const userSlice = createSlice({
         removeConnectionSuccess(state, action) {
             state.loading = false;
             state.message = action.payload.message;
-            // Remove the connection ID from state
+            
             if (state.user.connections) {
                 state.user.connections = state.user.connections.filter(id => id !== action.payload.removedConnection);
             }
@@ -604,7 +604,7 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
-        // Fetch All Connections
+        
         fetchConnectionsRequest(state) {
             state.loading = true;
             state.error = null;
@@ -617,30 +617,28 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
-        // Fetch User Posts
+        
         fetchUserPostsRequest(state) {
             state.loading = true;
             state.error = null;
         },
         fetchUserPostsSuccess(state, action) {
             state.loading = false;
-            state.userPosts = action.payload.posts; // Store fetched posts
+            state.userPosts = action.payload.posts; 
             state.error = null;
         },
         fetchUserPostsFailed(state, action) {
             state.loading = false;
             state.error = action.payload;
         },
-        // Clear Errors
+      
         clearAllErrors(state) {
             state.error = null;
         },
     },
 });
 
-// Thunk Actions
 
-// Fetch User Profile
 export const fetchUser = () => async (dispatch) => {
     dispatch(userSlice.actions.fetchUserRequest());
 
@@ -655,7 +653,7 @@ export const fetchUser = () => async (dispatch) => {
     }
 };
 
-// Fetch User Posts
+
 export const fetchUserPosts = (userId) => async (dispatch) => {
     dispatch(userSlice.actions.fetchUserPostsRequest());
 
@@ -670,7 +668,7 @@ export const fetchUserPosts = (userId) => async (dispatch) => {
     }
 };
 
-// Add Connection
+
 export const addConnection = (connectionId) => async (dispatch) => {
     dispatch(userSlice.actions.addConnectionRequest());
     try {
@@ -689,7 +687,7 @@ export const addConnection = (connectionId) => async (dispatch) => {
     }
 };
 
-// Remove Connection
+
 export const removeConnection = (connectionId) => async (dispatch) => {
     dispatch(userSlice.actions.removeConnectionRequest());
     try {
@@ -708,7 +706,7 @@ export const removeConnection = (connectionId) => async (dispatch) => {
     }
 };
 
-// Fetch All Connections
+
 export const fetchConnections = () => async (dispatch) => {
     dispatch(userSlice.actions.fetchConnectionsRequest());
     try {
@@ -722,7 +720,7 @@ export const fetchConnections = () => async (dispatch) => {
     }
 };
 
-// User Registration
+
 export const register = (data) => async (dispatch) => {
     dispatch(userSlice.actions.registerRequest());
     try {
@@ -738,7 +736,7 @@ export const register = (data) => async (dispatch) => {
     }
 };
 
-// User Login
+
 export const login = (data) => async (dispatch) => {
     dispatch(userSlice.actions.loginRequest());
     try {
@@ -754,7 +752,7 @@ export const login = (data) => async (dispatch) => {
     }
 };
 
-// Clear all errors
+
 export const clearAlluserErrors = () => (dispatch) => {
     dispatch(userSlice.actions.clearAllErrors());
 };

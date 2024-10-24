@@ -6,21 +6,21 @@ import "./AddPost.css"
 const AddPost = () => {
     const dispatch = useDispatch();
     const [newPostContent, setNewPostContent] = useState('');
-    const [newPostImage, setNewPostImage] = useState(null); // Store the Base64 image string
+    const [newPostImage, setNewPostImage] = useState(null); 
 
     const handleCreatePost = (event) => {
         event.preventDefault();
 
         const postData = {
             content: newPostContent,
-            image: newPostImage, // Include image (Base64 string)
+            image: newPostImage, 
         };
 
-        // Dispatch the post data
+       
         dispatch(createPost(postData));
 
-        setNewPostContent(''); // Clear content after submission
-        setNewPostImage(null);  // Clear image after submission
+        setNewPostContent('');
+        setNewPostImage(null);  
     };
 
     const handleImageChange = (e) => {
@@ -28,9 +28,9 @@ const AddPost = () => {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setNewPostImage(reader.result); // Store Base64 string in state
+                setNewPostImage(reader.result);
             };
-            reader.readAsDataURL(file); // Convert image to Base64
+            reader.readAsDataURL(file); 
         }
     };
 
@@ -47,7 +47,7 @@ const AddPost = () => {
                 <input 
                     type="file" 
                     accept="image/*" 
-                    onChange={handleImageChange} // Handle image selection
+                    onChange={handleImageChange} 
                 />
                 <button type="submit">Create Post</button>
             </form>

@@ -6,7 +6,7 @@ import logo from './logo2.png';
 const Home = () => {
   return (
     <>
-      {/* Hero Section */}
+
       <section className='hero'>
         <h1>Connect with Alumni, Unlock Your Future!</h1>
         <h4>
@@ -17,7 +17,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
+
       <section className='howItWorks'>
         <h3>How CampusConnect Works?</h3>
         <div className='container'>
@@ -47,7 +47,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Footer Section */}
+    
       <footer>
   <div className="footer-left">
     <h4>Stay Updated</h4>
