@@ -12,7 +12,7 @@ const chatSchema = new mongoose.Schema({
     },
     chatName: {
         type: String,
-        default: null,  // optional for grp chats
+        default: null,  
     },
     messages: [{
         type: mongoose.Schema.Types.ObjectId,

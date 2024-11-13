@@ -29,6 +29,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/personalposts" element={<UserPosts />} />
         <Route path="/logout" element={<Home />} />
+        <Route path="/addquestion" element={<Questions />} />
 
       </Routes>
     </Router>

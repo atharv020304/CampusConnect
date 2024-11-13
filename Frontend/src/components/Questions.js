@@ -1,58 +1,289 @@
-import React from 'react';
+// import React, { useEffect, useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { fetchQuestions, postAnswer, fetchAnswers } from '../store/slices/questionSlice.js';
+// import AddQuestion from './AddQuestion.js'
 
-// Dummy data for questions and answers
-const questionData = {
-    question: {
-        text: "What is the capital of France?",
-        user: "User123",
-        datePosted: "2 hours ago",
-    },
-    answers: [
-        {
-            text: "I think it's Paris!",
-            user: "Answerer1",
-            datePosted: "1 hour ago",
-        },
-        {
-            text: "Definitely Paris.",
-            user: "Answerer2",
-            datePosted: "30 minutes ago",
-        },
-        {
-            text: "I believe it’s Rome.",
-            user: "Answerer3",
-            datePosted: "15 minutes ago",
-        },
-    ],
-};
+// const Questions = () => {
+//     const dispatch = useDispatch();
+//     const { questions, loading, error, message } = useSelector(state => state.questions);
+    
+//     const [answerContent, setAnswerContent] = useState({});
 
-const Question = () => {
+//     // Fetch all questions on component mount
+//     useEffect(() => {
+//         dispatch(fetchQuestions());
+//     }, [dispatch]);
+
+//     // Handle fetching answers for a specific question
+//     const handleFetchAnswers = (questionId) => {
+//         dispatch(fetchAnswers(questionId));
+//     };
+
+//     // Handle answer submission
+//     const handleAnswerSubmit = (e, questionId) => {
+//         e.preventDefault();
+//         const answerData = { content: answerContent[questionId] };
+//         dispatch(postAnswer({ questionId, answerData }));
+//         setAnswerContent({ ...answerContent, [questionId]: '' }); // Clear input after submission
+//     };
+
+//     return (
+//         <div className="questions-container">
+//             {loading && <p>Loading questions...</p>}
+//             {error && <p style={{ color: 'red' }}>{error}</p>}
+//             {message && <p style={{ color: 'green' }}>{message}</p>}
+
+//             {/* AddQuestion Component */}
+//             <AddQuestion />
+
+//             {/* Displaying Questions */}
+//             {questions.map((question) => (
+//                 <div key={question._id} className="question-card">
+//                     <h3>{question.title}</h3>
+//                     <p>{question.content}</p>
+//                     {question.image && (
+//                         <img src={question.image} alt="Question" className="question-image" />
+//                     )}
+
+//                     {/* Button to load answers */}
+//                     <button onClick={() => handleFetchAnswers(question._id)}>
+//                         {question.answers && question.answers.length > 0 ? 'Reload Answers' : 'Load Answers'}
+//                     </button>
+
+//                     {/* Display answers if they exist */}
+//                     {question.answers && question.answers.length > 0 && (
+//                         <div className="answers-section">
+//                             <h4>Answers:</h4>
+//                             {question.answers.map((answer) => (
+//                                 <div key={answer._id} className="answer-card">
+//                                     <p>{answer.content}</p>
+//                                     <small>Answered by: {answer.answeredBy}</small>
+//                                 </div>
+//                             ))}
+//                         </div>
+//                     )}
+
+//                     {/* Answer form */}
+//                     <form onSubmit={(e) => handleAnswerSubmit(e, question._id)} className="answer-form">
+//                         <input
+//                             type="text"
+//                             value={answerContent[question._id] || ''}
+//                             onChange={(e) => setAnswerContent({ ...answerContent, [question._id]: e.target.value })}
+//                             placeholder="Write your answer..."
+//                             required
+//                         />
+//                         <button type="submit">Submit</button>
+//                     </form>
+//                 </div>
+//             ))}
+//         </div>
+//     );
+// };
+
+// export default Questions;
+
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { fetchQuestions, postAnswer, fetchAnswers } from '../store/slices/questionSlice.js';
+// import AddQuestion from './AddQuestion.js';
+
+// const Questions = () => {
+//     const dispatch = useDispatch();
+//     const { questions, loading, error, message } = useSelector((state) => state.questions);
+    
+//     // State to manage the answer content for each question
+//     const [answerContent, setAnswerContent] = useState({});
+
+//     // Fetch all questions on component mount
+//     useEffect(() => {
+//         dispatch(fetchQuestions());
+//     }, [dispatch]);
+
+//     // Handle fetching answers for a specific question
+//     const handleFetchAnswers = (questionId) => {
+//         dispatch(fetchAnswers(questionId));
+//     };
+
+//     // Handle answer submission
+//     const handleAnswerSubmit = (e, questionId) => {
+//         e.preventDefault();
+    
+//         // Prepare the answer data with the content
+//         const answerData = {
+//             content: answerContent[questionId], // assuming answerContent stores the content for each question
+//         };
+    
+//         // Ensure the content is not empty before dispatching
+//         if (!answerData.content || answerData.content.trim() === "") {
+//             console.log("Answer content is empty!");
+//             return;
+//         }
+    
+//         console.log("Posting Answer with Data: ", answerData);
+    
+//         // Dispatch the postAnswer action with the questionId and answerData
+//         dispatch(postAnswer(questionId, answerData));
+    
+//         // Clear the answer content after posting
+//         setAnswerContent({ ...answerContent, [questionId]: "" });
+//     };
+    
+    
+
+//     return (
+//         <div className="questions-container">
+//             {loading && <p>Loading questions...</p>}
+//             {error && <p style={{ color: 'red' }}>{error}</p>}
+//             {message && <p style={{ color: 'green' }}>{message}</p>}
+
+//             {/* AddQuestion Component */}
+//             <AddQuestion />
+
+//             {/* Displaying Questions */}
+//             {questions.map((question) => (
+//                 <div key={question._id} className="question-card">
+//                     <h3>{question.title}</h3>
+//                     <p>{question.content}</p>
+//                     {question.image && (
+//                         <img src={question.image} alt="Question" className="question-image" />
+//                     )}
+
+//                     {/* Button to load answers */}
+//                     <button onClick={() => handleFetchAnswers(question._id)}>
+//                         {question.answers && question.answers.length > 0 ? 'Reload Answers' : 'Load Answers'}
+//                     </button>
+
+//                     {/* Display answers if they exist */}
+//                     {question.answers && question.answers.length > 0 && (
+//                         <div className="answers-section">
+//                             <h4>Answers:</h4>
+//                             {question.answers.map((answer) => (
+//                                 <div key={answer._id} className="answer-card">
+//                                     <p>{answer.content}</p>
+//                                     <small>Answered by: {answer.answeredBy}</small>
+//                                 </div>
+//                             ))}
+//                         </div>
+//                     )}
+
+//                     {/* Answer form */}
+//                     <form onSubmit={(e) => handleAnswerSubmit(e, question._id)} className="answer-form">
+//                         <input
+//                             type="text"
+//                             value={answerContent[question._id] || ''}
+//                             onChange={(e) => setAnswerContent({ ...answerContent, [question._id]: e.target.value })}
+//                             placeholder="Write your answer..."
+//                             required
+//                         />
+//                         <button type="submit">Submit Answer</button>
+//                     </form>
+//                 </div>
+//             ))}
+//         </div>
+//     );
+// };
+
+// export default Questions;
+
+
+
+
+
+
+
+
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchQuestions, postAnswer, fetchAnswers } from '../store/slices/questionSlice.js';
+import AddQuestion from './AddQuestion.js';
+
+const Questions = () => {
+    const dispatch = useDispatch();
+    const { questions, loading, error, message } = useSelector(state => state.questions);
+    
+    const [content, setContent] = useState({});
+
+    // Fetch all questions on component mount
+    useEffect(() => {
+        dispatch(fetchQuestions());
+    }, [dispatch]);
+
+    // Handle fetching answers for a specific question
+    const handleFetchAnswers = (questionId) => {
+        dispatch(fetchAnswers(questionId));
+    };
+
+    // Handle answer submission
+    const handleAnswerSubmit = (e, questionId) => {
+        e.preventDefault();
+        
+        // Check if the answer content for the question is empty or not
+        if (!content[questionId] || content[questionId].trim() === '') {
+            console.error("Answer content is empty");
+            return;
+        }
+        
+        const answerData = { content: content[questionId] };
+        console.log("Answer Data: ", answerData); // Log the answer data to verify it's correct
+
+        // Dispatch the action to post the answer
+        dispatch(postAnswer({ questionId, answerData }));
+
+        // Clear the input field after submission
+        setContent({ ...content, [questionId]: '' });
+    };
+
     return (
-        <div className="question-container">
-            {/* Displaying the question */}
-            <div className="question-item">
-                <h3>{questionData.question.text}</h3>
-                <p className="user-info">
-                    Posted by {questionData.question.user} on {questionData.question.datePosted}
-                </p>
-            </div>
+        <div className="questions-container">
+            {loading && <p>Loading questions...</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {message && <p style={{ color: 'green' }}>{message}</p>}
 
-            {/* Displaying the answers */}
-            <div className="answers-container">
-                <h4>Answers:</h4>
-                <ul>
-                    {questionData.answers.map((answer, index) => (
-                        <li key={index} className="answer-item">
-                            <p>{answer.text}</p>
-                            <p className="user-info">
-                                Answered by {answer.user} on {answer.datePosted}
-                            </p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            {/* AddQuestion Component */}
+            <AddQuestion />
+
+            {/* Displaying Questions */}
+            {questions.map((question) => (
+                <div key={question._id} className="question-card">
+                    <h3>{question.title}</h3>
+                    <p>{question.content}</p>
+                   
+                    {/* Button to load answers */}
+                    <button onClick={() => handleFetchAnswers(question._id)}>
+                        {question.answers && question.answers.length > 0 ? 'Reload Answers' : 'Load Answers'}
+                    </button>
+
+                    {/* Display answers if they exist */}
+                    {question.answers && question.answers.length > 0 && (
+                        <div className="answers-section">
+                            <h4>Answers:</h4>
+                            {question.answers.map((answer) => (
+                                <div key={answer._id} className="answer-card">
+                                    <p>{answer.content}</p>
+                                    <small>Answered by: {answer.answeredBy}</small>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Answer form */}
+                    <form onSubmit={(e) => handleAnswerSubmit(e, question._id)} className="answer-form">
+                        <input
+                            type="text"
+                            value={content[question._id] || ''}  // Bind value to the content of the current question
+                            onChange={(e) => setContent({ ...content, [question._id]: e.target.value })}  // Update content for the specific question
+                            placeholder="Write your answer..."
+                            required
+                        />
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            ))}
         </div>
     );
 };
 
-export default Question;
+export default Questions;
