@@ -62,3 +62,25 @@ export const deleteAnswer = asyncHandler(async(req,res,next)=>{
         message: "answer deleted successfully"
     })
 })
+
+
+
+export const getAnswersForQuestion = asyncHandler(async (req, res, next) => {
+    const { questionId } = req.params;
+
+    // Find the question by ID and populate answers
+    const question = await Question.findById(questionId).populate({
+        path: 'answers',
+        select: 'content answeredBy createdAt',  // Select specific fields in the answer
+        populate: { path: 'answeredBy', select: 'username' }  // Populate user info in answeredBy if needed
+    });
+
+    if (!question) {
+        return next(new errHandler(404, "Question not found"));
+    }
+
+    res.status(200).json({
+        success: true,
+        answers: question.answers,
+    });
+});
