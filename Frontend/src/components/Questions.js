@@ -374,9 +374,7 @@ const Questions = () => {
                             id={`answer-input-${question._id}`}  // Unique ID for each question's answer input
                             placeholder="Write your answer..."
                             className="answer-input"
-                            required
-                            className='answer-input'
-                            />
+                            required                            />
                         <button type="submit">Submit</button>
                     </form>
                 </div>
