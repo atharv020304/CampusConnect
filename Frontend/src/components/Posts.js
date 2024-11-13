@@ -29,6 +29,7 @@ const Posts = () => {
 
     const handleFetchComments = (postId) => {
         dispatch(fetchComments(postId));
+        console.log(comments);
     };
 
     if (loading) return <div>Loading...</div>;
@@ -37,18 +38,19 @@ const Posts = () => {
 
     return (
         <div className="posts-container">
-            <h1>Posts</h1>
+            <h1 className='posts-header'>Posts</h1>
             {posts.map((post) => (
                 <div key={post._id} className="post">
+                    <p>Posted by: <strong>{post.author.name}</strong></p>
                     <h2>{post.title}</h2>
                     <p>{post.content}</p>
                     {post.image && <img src={post.image} alt={post.title} className="post-image" />}
                     <button onClick={() => handleFetchComments(post._id)}>Load Comments</button>
                     <h3>Comments:</h3>
-                    <ul>
+                    <ul className='comment-list'>
                         {comments[post._id]?.map((comment) => (
                             <li key={comment._id} className="comment">
-                                {comment.content}
+                                <strong>{comment.user.name}</strong>: {comment.content}
                             </li>
                         ))}
                     </ul>

@@ -7,6 +7,10 @@
     min-height: 100vh;
 }
 
+.posts-header{
+    margin-bottom: 30px;
+}
+
 /* Style for individual post boxes */
 .post {
     background-color: #fff; /* White background for each post */
@@ -72,6 +76,10 @@ button:hover {
     font-size: 14px;
 }
 
+.comment-list{
+    list-style: none;
+}
+
 /* Style for comment input textarea */
 .comment-input {
     width: 100%;
@@ -79,7 +87,7 @@ button:hover {
     margin-top: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    resize: vertical;
+    resize: none;
     font-size: 14px;
 }
 

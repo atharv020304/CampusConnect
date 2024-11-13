@@ -295,7 +295,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchQuestions, postAnswer, fetchAnswers, clearAllQuestionErrors } from '../store/slices/questionSlice.js';
 import AddQuestion from './AddQuestion.js';
-import './Questions.css';
+import "./Questions.css";
 
 const Questions = () => {
     const dispatch = useDispatch();
@@ -343,9 +343,11 @@ const Questions = () => {
             <AddQuestion />
 
             {/* Displaying Questions */}
+            <div className='question-container'>
+
             {questions.map((question) => (
                 <div key={question._id} className="question-card">
-                    <h3>{question.title}</h3>
+                    <h3 className='question-title'>{question.title}</h3>
                     <p>{question.content}</p>
                    
                     {/* Button to load answers */}
@@ -373,11 +375,13 @@ const Questions = () => {
                             placeholder="Write your answer..."
                             className="answer-input"
                             required
-                        />
-                        <button type="submit" className="submit-answer-btn">Submit</button>
+                            className='answer-input'
+                            />
+                        <button type="submit">Submit</button>
                     </form>
                 </div>
             ))}
+            </div>
         </div>
     );
 };

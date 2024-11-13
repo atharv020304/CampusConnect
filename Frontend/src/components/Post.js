@@ -40,7 +40,7 @@ const Post = ({ postId, author, content, image, comments, postedOn }) => {
 
     return (
         <div className="post">
-            <h2>{author}</h2> 
+            <p>{author}</p> 
             <p>{content}</p> 
             {image && <img src={image} alt={content} className="post-image" />} 
             <p>Posted on: {new Date(postedOn).toLocaleDateString()}</p> 
