@@ -55,6 +55,11 @@ const Navbar = () => {
                     PROFILE
                   </Link>
                 </li>
+                <li>
+                  <Link to={"/chat"} onClick={() => setShow(false)}>
+                    CHAT
+                  </Link>
+                </li>
               </>
             ) : (
               <>

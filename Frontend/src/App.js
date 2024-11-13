@@ -11,6 +11,7 @@ import Navbar from "./components/NavBar.js";
 import "./App.css";
 import AddPost from "./components/AddPost.js";
 import UserPosts from "./components/UserPosts.js";
+import Chat from "./components/Chat.js";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/personalposts" element={<UserPosts />} />
         <Route path="/logout" element={<Home />} />
+        <Route path="/chat" element={<Chat />} />
         <Route path="/addquestion" element={<Questions />} />
 
       </Routes>
