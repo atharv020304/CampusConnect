@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createPost } from "../store/slices/postSlice.js";
-import "./AddPost.css"
+import "./AddPost.css";
 
 const AddPost = () => {
     const dispatch = useDispatch();
     const [newPostContent, setNewPostContent] = useState('');
-    const [newPostImage, setNewPostImage] = useState(null); 
+    const [newPostImage, setNewPostImage] = useState(null);
 
     const handleCreatePost = (event) => {
         event.preventDefault();
 
         const postData = {
             content: newPostContent,
-            image: newPostImage, 
+            image: newPostImage,
         };
 
         dispatch(createPost(postData));
 
         setNewPostContent('');
-        setNewPostImage(null);  
+        setNewPostImage(null);
     };
 
     const handleImageChange = (e) => {
@@ -29,12 +29,12 @@ const AddPost = () => {
             reader.onloadend = () => {
                 setNewPostImage(reader.result);
             };
-            reader.readAsDataURL(file); 
+            reader.readAsDataURL(file);
         }
     };
 
     return (
-        <div>
+        <div className="add-post-container">
             <h2>Create a New Post</h2>
             <form onSubmit={handleCreatePost}>
                 <textarea
@@ -43,10 +43,10 @@ const AddPost = () => {
                     placeholder="Post content"
                     required
                 />
-                <input 
-                    type="file" 
-                    accept="image/*" 
-                    onChange={handleImageChange} 
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
                 />
                 <button type="submit">Create Post</button>
             </form>
