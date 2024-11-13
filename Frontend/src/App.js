@@ -28,6 +28,8 @@ function App() {
         <Route path="/addpost" element={<AddPost />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/personalposts" element={<UserPosts />} />
+        <Route path="/logout" element={<Home />} />
+
       </Routes>
     </Router>
   );

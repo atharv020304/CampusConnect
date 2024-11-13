@@ -16,7 +16,7 @@ import messageRouter from "./Routes/messageRoutes.js";
 const app = express();
 config({path: "./config/config.env"})
 
-const corsOrigin = process.env.FRONTEND_URL; // backend and frontend connection
+const corsOrigin = process.env.FRONTEND_URL; 
 app.use(cors({
     origin: corsOrigin,
     methods: ["GET", "POST","PUT","DELETE"],
