@@ -107,6 +107,7 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch(logoutUser());  
     setShow(false);
+    window.location.reload();
     navigate("/");
     
   };
