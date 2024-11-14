@@ -69,16 +69,30 @@ export const UserLogin = asyncHandler(async(req,res,next)=>{
         sendToken(user, 200,res,"User Logged in Successfully");
 });
 
+// export const Logout = asyncHandler(async(req,res,next)=>{
+
+//     res.status(200).cookie("token","",{
+//         expires:new Date(Date.now()),
+//         httpOnly:true
+//     }).json({
+//         success:true,
+//         message:"Logged out successfully"
+//     })
+
+// })
+
+
 export const Logout = asyncHandler(async(req,res,next)=>{
-
+    //delete cookie to logout the user
     res.status(200).cookie("token","",{
-        expires:new Date(Date.now()),
-        httpOnly:true
+        expires: new Date(
+            Date.now()
+        ),
+        httpOnly: true,
     }).json({
-        success:true,
-        message:"Logged out successfully"
+        success: true,
+        message: "Logged out successfully",
     })
-
 })
 
 

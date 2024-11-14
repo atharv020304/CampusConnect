@@ -1,5 +1,4 @@
 
-//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // import React, { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -181,20 +180,7 @@ const Profile = () => {
     
     
     
-    const isConnected = user?.connections?.includes(currentUserId);
-
     
-    const handleConnect = () => {
-        if (user && currentUserId && currentUserId !== user._id) {
-            dispatch(addConnection(user._id));
-        }
-    };
-
-    const handleDisconnect = () => {
-        if (user && currentUserId && currentUserId !== user._id) {
-            dispatch(removeConnection(user._id));
-        }
-    };
 
     
     const handleShowPosts = () => {
@@ -211,23 +197,26 @@ const Profile = () => {
 
 
     const handleDeletePost = (postId) => {
-        dispatch(deletePost(postId)); 
+        dispatch(deletePost(postId))
+        .then(() => dispatch(fetchUserPosts(user._id)));
     };
 
     // Start editing a post
-    const handleEditPost = (post) => {
-        setEditingPostId(post._id); // Set the ID of the post being edited
-        setEditContent(post.content); // Set the current content for editing
-    };
+const handleEditPost = (post) => {
+    setEditingPostId(post._id); // Set the ID of the post being edited
+    setEditContent(post.content); // Set the current content for editing
+};
 
-    // Submit the edited post
-    const handleUpdatePost = () => {
-        if (editingPostId && editContent.trim()) {
-            dispatch(updatePost(editingPostId, { content: editContent }));
-            setEditingPostId(null); // Clear editing state after update
-            setEditContent(''); // Clear input
-        }
-    };
+// Submit the edited post
+const handleUpdatePost = () => {
+    if (editingPostId && editContent.trim()) {
+        dispatch(updatePost(editingPostId, { content: editContent }))
+            .then(() => dispatch(fetchUserPosts(user._id))); // Re-fetch posts after updating
+        setEditingPostId(null); // Clear editing state after update
+        setEditContent(''); // Clear input
+    }
+};
+
 
     // Loading and error handling
     if (loading) return <div>Loading...</div>;
@@ -241,7 +230,10 @@ const Profile = () => {
                     <h2>{user.name || "N/A"}</h2>
                     <p>Email: {user.email || "N/A"}</p>
                     <p>Username: {user.name || "N/A"}</p>
-                    <p>Connections: {user.connections ? user.connections.length : 0}</p>
+                    <p>Graduation Year: {user.graduationYear || "N/A"}</p>
+                    <p>Skills: {user.skills[0] || "N/A"}</p>
+                    <p>Role: {user.role}</p>
+                   
                 </div>
             ) : (
                 <div>No user data available</div>
@@ -253,12 +245,7 @@ const Profile = () => {
                     <li>
                         <Link to="#" onClick={handleShowPosts} className="profile-link">View My Posts</Link>
                     </li>
-                    <li>
-                        <Link to={`/user/${user._id}/questions`} className="profile-link">View My Questions</Link>
-                    </li>
-                    <li>
-                        <Link to={`/user/${user._id}/connections`} className="profile-link">View My Connections</Link>
-                    </li>
+                    
                 </ul>
             </div>
 
@@ -316,20 +303,8 @@ const Profile = () => {
                 </div>
             )}
 
-            {/* Connection buttons */}
-            {user && currentUserId !== user._id && (
-                <>
-                    {!isConnected ? (
-                        <button className="connect-button" onClick={handleConnect}>
-                            Connect
-                        </button>
-                    ) : (
-                        <button className="disconnect-button" onClick={handleDisconnect}>
-                            Disconnect
-                        </button>
-                    )}
-                </>
-            )}
+            
+            
         </div>
     );
 };

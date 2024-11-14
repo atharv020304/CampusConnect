@@ -303,8 +303,9 @@ const Questions = () => {
 
     useEffect(() => {
         dispatch(fetchQuestions());
-        dispatch(clearAllQuestionErrors()); // Clear any errors when component mounts
-    }, [dispatch]);
+        dispatch(clearAllQuestionErrors());
+        console.log(answers); // Clear any errors when component mounts
+    }, [dispatch,answers]);
 
     const handleAnswerSubmit = (e, questionId) => {
         e.preventDefault();
@@ -362,7 +363,6 @@ const Questions = () => {
                             {question.answers.map((answer) => (
                                 <div key={answer._id} className="answer-card">
                                     <p>{answer.content}</p>
-                                    <small>Answered by: {answer.answeredBy}</small>
                                 </div>
                             ))}
                         </div>

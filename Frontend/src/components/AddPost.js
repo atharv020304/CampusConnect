@@ -43,11 +43,11 @@ const AddPost = () => {
                     placeholder="Post content"
                     required
                 />
-                <input
+                {/* <input
                     type="file"
                     accept="image/*"
                     onChange={handleImageChange}
-                />
+                /> */}
                 <button type="submit">Create Post</button>
             </form>
         </div>

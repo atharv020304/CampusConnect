@@ -12,6 +12,7 @@ import "./App.css";
 import AddPost from "./components/AddPost.js";
 import UserPosts from "./components/UserPosts.js";
 import Chat from "./components/Chat.js";
+import Logout from "./components/Logout.js";
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
         <Route path="/addpost" element={<AddPost />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/personalposts" element={<UserPosts />} />
-        <Route path="/logout" element={<Home />} />
+        <Route path="/logout" element={<Home/>} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/addquestion" element={<Questions />} />
 

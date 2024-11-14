@@ -494,6 +494,276 @@
 
 // +=-=-=-=-=-=-=-=-==-=-=----------=-=-=-=-=-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
+// import { createSlice } from "@reduxjs/toolkit";
+// import axios from "axios";
+
+// const BACKEND_URL = "http://localhost:2000/api/v1";
+
+// const userSlice = createSlice({
+//     name: "user",
+//     initialState: {
+//         loading: false,
+//         isAuth: false,
+//         user: {},
+//         error: null,
+//         message: null,
+//         connections: [],
+//         userPosts: [], 
+//     },
+//     reducers: {
+      
+//         registerRequest(state) {
+//             state.loading = true;
+//             state.isAuth = false;
+//             state.error = null;
+//             state.message = null;
+//         },
+//         registerSuccess(state, action) {
+//             state.loading = false;
+//             state.isAuth = true;
+//             state.user = action.payload.user;
+//             state.error = null;
+//             state.message = action.payload.message;
+//         },
+//         registerFailed(state, action) {
+//             state.loading = false;
+//             state.isAuth = false;
+//             state.user = {};
+//             state.error = action.payload;
+//             state.message = null;
+//         },
+      
+//         loginRequest(state) {
+//             state.loading = true;
+//             state.isAuth = false;
+//             state.error = null;
+//             state.message = null;
+//         },
+//         loginSuccess(state, action) {
+//             state.loading = false;
+//             state.isAuth = true;
+//             state.user = action.payload.user;
+//             state.error = null;
+//             state.message = action.payload.message;
+//         },
+//         loginFailed(state, action) {
+//             state.loading = false;
+//             state.isAuth = false;
+//             state.user = {};
+//             state.error = action.payload;
+//             state.message = null;
+//         },
+      
+//         fetchUserRequest(state) {
+//             state.loading = true;
+//             state.error = null;
+//         },
+//         fetchUserSuccess(state, action) {
+//             state.loading = false;
+//             state.user = action.payload.user;
+//             state.connections = action.payload.user.connections || [];
+//             state.error = null;
+//         },
+//         fetchUserFailed(state, action) {
+//             state.loading = false;
+//             state.error = action.payload;
+//         },
+       
+//         addConnectionRequest(state) {
+//             state.loading = true;
+//             state.error = null;
+//             state.message = null;
+//         },
+//         addConnectionSuccess(state, action) {
+//             state.loading = false;
+//             state.message = action.payload.message;
+
+//             if (state.user.connections) {
+//                 state.user.connections.push(action.payload.newConnection);
+//             }
+//         },
+//         addConnectionFailed(state, action) {
+//             state.loading = false;
+//             state.error = action.payload;
+//         },
+        
+//         removeConnectionRequest(state) {
+//             state.loading = true;
+//             state.error = null;
+//             state.message = null;
+//         },
+//         removeConnectionSuccess(state, action) {
+//             state.loading = false;
+//             state.message = action.payload.message;
+            
+//             if (state.user.connections) {
+//                 state.user.connections = state.user.connections.filter(id => id !== action.payload.removedConnection);
+//             }
+//         },
+//         removeConnectionFailed(state, action) {
+//             state.loading = false;
+//             state.error = action.payload;
+//         },
+        
+//         fetchConnectionsRequest(state) {
+//             state.loading = true;
+//             state.error = null;
+//         },
+//         fetchConnectionsSuccess(state, action) {
+//             state.loading = false;
+//             state.connections = action.payload.connections;
+//         },
+//         fetchConnectionsFailed(state, action) {
+//             state.loading = false;
+//             state.error = action.payload;
+//         },
+        
+//         fetchUserPostsRequest(state) {
+//             state.loading = true;
+//             state.error = null;
+//         },
+//         fetchUserPostsSuccess(state, action) {
+//             state.loading = false;
+//             state.userPosts = action.payload.posts; 
+//             state.error = null;
+//         },
+//         fetchUserPostsFailed(state, action) {
+//             state.loading = false;
+//             state.error = action.payload;
+//         },
+      
+//         clearAllErrors(state) {
+//             state.error = null;
+//         },
+//     },
+// });
+
+
+// export const fetchUser = () => async (dispatch) => {
+//     dispatch(userSlice.actions.fetchUserRequest());
+
+//     try {
+//         const response = await axios.get(`${BACKEND_URL}/user/getuser`, {
+//             withCredentials: true,
+//         });
+//         dispatch(userSlice.actions.fetchUserSuccess(response.data));
+//     } catch (error) {
+//         const errorMessage = error.response?.data?.message || "An error occurred";
+//         dispatch(userSlice.actions.fetchUserFailed(errorMessage));
+//     }
+// };
+
+
+// export const fetchUserPosts = (userId) => async (dispatch) => {
+//     dispatch(userSlice.actions.fetchUserPostsRequest());
+
+//     try {
+//         const response = await axios.get(`${BACKEND_URL}/postcontent/getuserposts/${userId}`, {
+//             withCredentials: true,
+//         });
+//         dispatch(userSlice.actions.fetchUserPostsSuccess(response.data));
+//     } catch (error) {
+//         const errorMessage = error.response?.data?.message || "Failed to fetch user posts";
+//         dispatch(userSlice.actions.fetchUserPostsFailed(errorMessage));
+//     }
+// };
+
+
+// export const addConnection = (connectionId) => async (dispatch) => {
+//     dispatch(userSlice.actions.addConnectionRequest());
+//     try {
+//         const response = await axios.post(
+//             `${BACKEND_URL}/user/addConnection`,
+//             { connectionId },
+//             { withCredentials: true }
+//         );
+//         dispatch(userSlice.actions.addConnectionSuccess({
+//             message: response.data.message,
+//             newConnection: connectionId
+//         }));
+//     } catch (error) {
+//         const errorMessage = error.response?.data?.message || "Failed to add connection";
+//         dispatch(userSlice.actions.addConnectionFailed(errorMessage));
+//     }
+// };
+
+
+// export const removeConnection = (connectionId) => async (dispatch) => {
+//     dispatch(userSlice.actions.removeConnectionRequest());
+//     try {
+//         const response = await axios.post(
+//             `${BACKEND_URL}/user/removeConnection`,
+//             { connectionId },
+//             { withCredentials: true }
+//         );
+//         dispatch(userSlice.actions.removeConnectionSuccess({
+//             message: response.data.message,
+//             removedConnection: connectionId
+//         }));
+//     } catch (error) {
+//         const errorMessage = error.response?.data?.message || "Failed to remove connection";
+//         dispatch(userSlice.actions.removeConnectionFailed(errorMessage));
+//     }
+// };
+
+
+// export const fetchConnections = () => async (dispatch) => {
+//     dispatch(userSlice.actions.fetchConnectionsRequest());
+//     try {
+//         const response = await axios.get(`${BACKEND_URL}/user/getAllConnections`, {
+//             withCredentials: true,
+//         });
+//         dispatch(userSlice.actions.fetchConnectionsSuccess(response.data));
+//     } catch (error) {
+//         const errorMessage = error.response?.data?.message || "Failed to fetch connections";
+//         dispatch(userSlice.actions.fetchConnectionsFailed(errorMessage));
+//     }
+// };
+
+
+// export const register = (data) => async (dispatch) => {
+//     dispatch(userSlice.actions.registerRequest());
+//     try {
+//         const response = await axios.post(`${BACKEND_URL}/user/register`, data, {
+//             withCredentials: true,
+//             headers: { "Content-Type": "application/json" },
+//         });
+//         dispatch(userSlice.actions.registerSuccess(response.data));
+//         dispatch(userSlice.actions.clearAllErrors());
+//     } catch (error) {
+//         const errorMessage = error.response?.data?.message || "An error occurred";
+//         dispatch(userSlice.actions.registerFailed(errorMessage));
+//     }
+// };
+
+
+// export const login = (data) => async (dispatch) => {
+//     dispatch(userSlice.actions.loginRequest());
+//     try {
+//         const response = await axios.post(`${BACKEND_URL}/user/login`, data, {
+//             withCredentials: true,
+//             headers: { "Content-Type": "application/json" },
+//         });
+//         dispatch(userSlice.actions.loginSuccess(response.data));
+//         dispatch(userSlice.actions.clearAllErrors());
+//     } catch (error) {
+//         const errorMessage = error.response?.data?.message || "An error occurred";
+//         dispatch(userSlice.actions.loginFailed(errorMessage));
+//     }
+// };
+
+
+// export const clearAlluserErrors = () => (dispatch) => {
+//     dispatch(userSlice.actions.clearAllErrors());
+// };
+
+// export default userSlice.reducer;
+
+
+
+
+
+
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -577,7 +847,6 @@ const userSlice = createSlice({
         addConnectionSuccess(state, action) {
             state.loading = false;
             state.message = action.payload.message;
-
             if (state.user.connections) {
                 state.user.connections.push(action.payload.newConnection);
             }
@@ -631,7 +900,20 @@ const userSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
-      
+        LogoutUserRequest(state) {
+            state.loading = true;
+            state.error = null;
+        },
+        LogoutUserSuccess(state) {
+            state.loading = false;
+            state.isAuth = false;
+            state.user = null;
+            state.userPosts = null;
+        },
+        LogoutUserFailed(state, action) {
+            state.loading = false;
+            state.error = action.payload;
+        },
         clearAllErrors(state) {
             state.error = null;
         },
@@ -667,6 +949,9 @@ export const fetchUserPosts = (userId) => async (dispatch) => {
         dispatch(userSlice.actions.fetchUserPostsFailed(errorMessage));
     }
 };
+
+
+
 
 
 export const addConnection = (connectionId) => async (dispatch) => {
@@ -752,6 +1037,27 @@ export const login = (data) => async (dispatch) => {
     }
 };
 
+export const logoutUser = () => async (dispatch) => {
+    dispatch(userSlice.actions.LogoutUserRequest());
+    try {
+        document.cookie.split(';').forEach(cookie => {
+            const eqPos = cookie.indexOf('=');
+            const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        });
+        const response = await axios.post(`http://localhost:2000/api/v1/user/logout
+`, {}, {
+            withCredentials: true,
+        });
+        console.log("Logout response:", response);
+        dispatch(userSlice.actions.LogoutUserSuccess());
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || "Failed to log out";
+        console.error("Logout error:", errorMessage);
+        dispatch(userSlice.actions.LogoutUserFailed(errorMessage));
+    }
+  };
+  
 
 export const clearAlluserErrors = () => (dispatch) => {
     dispatch(userSlice.actions.clearAllErrors());

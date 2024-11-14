@@ -32,7 +32,7 @@ const Posts = () => {
         console.log(comments);
     };
 
-    if (loading) return <div>Loading...</div>;
+
     if (error) return <div>{error}</div>;
     if (message) return <div>{message}</div>; 
 
